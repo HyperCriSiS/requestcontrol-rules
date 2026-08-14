@@ -1,0 +1,47 @@
+name: Strict lint current Request Control
+
+on:
+  push:
+    branches:
+      - feature/dependency-lab
+    paths:
+      - .github/workflows/strict-lint-current.yml
+
+permissions:
+  contents: write
+
+jobs:
+  lint-current:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Clone exact current candidate
+        run: |
+          git clone --depth 1 --branch feature/modernization https://github.com/HyperCriSiS/requestcontrol.git /tmp/requestcontrol
+          mkdir -p lab/current
+          git -C /tmp/requestcontrol rev-parse HEAD > lab/current/head.txt
+          cp /tmp/requestcontrol/manifest.json lab/current/source-manifest.json
+      - name: Install and build
+        working-directory: /tmp/requestcontrol
+        run: |
+          sudo apt-get update && sudo apt-get install -y pandoc
+          npm ci
+          npm run build
+      - name: Capture packaged manifest and strict lint
+        working-directory: /tmp/requestcontrol
+        continue-on-error: true
+        run: |
+          ZIP="web-ext-artifacts/request_control-$(node -p \"require('./manifest.json').version\").zip"
+          unzip -p "$ZIP" manifest.json > "$GITHUB_WORKSPACE/lab/current/packaged-manifest.json"
+          npx addons-linter --warnings-as-errors "$ZIP" > "$GITHUB_WORKSPACE/lab/current/lint.log" 2>&1
+      - name: Commit exact diagnostics
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add lab/current
+          git commit -m "chore: capture exact current lint diagnostics" || exit 0
+          git push origin HEAD:feature/dependency-lab
