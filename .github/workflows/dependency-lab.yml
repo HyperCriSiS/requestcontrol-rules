@@ -59,11 +59,11 @@ jobs:
         continue-on-error: true
         run: npm run build 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/build.log"
       - id: lintbuild
-        name: Lint built artifact
+        name: Strict lint built artifact
         if: steps.build.outcome == 'success'
         working-directory: /tmp/requestcontrol
         continue-on-error: true
-        run: npm run lint-build 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/lint-build.log"
+        run: npx addons-linter --warnings-as-errors "web-ext-artifacts/request_control-$(node -p \"require('./manifest.json').version\").zip" 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/lint-build.log"
       - name: Save generated dependency artifacts
         if: always()
         run: |
@@ -98,5 +98,3 @@ jobs:
           test "${{ steps.pandoc.outcome }}" = success
           test "${{ steps.build.outcome }}" = success
           test "${{ steps.lintbuild.outcome }}" = success
-
-# Retest trigger: 2026-08-14T15:29Z
