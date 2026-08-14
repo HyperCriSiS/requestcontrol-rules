@@ -1,5 +1,4 @@
 install=success
-npm-ci=success
 test=success
 lint=success
 pandoc=success

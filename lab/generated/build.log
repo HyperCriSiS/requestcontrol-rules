@@ -50,18 +50,18 @@
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/manifest.js][debug] Validating manifest at /tmp/requestcontrol/manifest.json
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/.git with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/.git
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/.git
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/.gitignore with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/.gitignore
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/.gitignore
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/.github with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/.github
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/.github
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/.gitignore with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/.gitignore
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/.gitignore
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/.gitmodules with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/.gitmodules
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/.gitmodules
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/.node-version with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/.node-version
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/.node-version
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/CHANGELOG.md with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/CHANGELOG.md
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/LICENSE with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/LICENSE
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/README.rst with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/README.rst
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/README.rst
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/.node-version with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/.node-version
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/.node-version
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/_locales with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/_locales
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/coverage with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/coverage
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/coverage
@@ -78,14 +78,14 @@
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/package-lock.json
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/package.json with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/package.json
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/package.json
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/scripts with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/scripts
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/scripts
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/test with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/test
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/test
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/web-ext-artifacts with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/web-ext-artifacts
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/web-ext-artifacts
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/scripts with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/scripts
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/scripts
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/_locales/README.rst with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/_locales/README.rst
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/_locales/en with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/_locales/en
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/_locales/es with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/_locales/es
@@ -101,17 +101,8 @@
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/lib/lit with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/lib/lit
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/lib/tldts with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/lib/tldts
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/analyzer with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/analyzer
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/background.html with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/background.html
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/background.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/background.js
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/install.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/install.js
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/main with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/main
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/migrate.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/migrate.js
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/options with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/options
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/popup with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/popup
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules/other-skip-image-downsamplers.json with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules/other-skip-image-downsamplers.json
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules/privacy-amazon.json with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules/privacy-amazon.json
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules/other-skip-image-downsamplers.json with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules/other-skip-image-downsamplers.json
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules/privacy-bing.json with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules/privacy-bing.json
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules/privacy-block-beacon-and-ping.json with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules/privacy-block-beacon-and-ping.json
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules/privacy-common-images.json with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules/privacy-common-images.json
@@ -124,6 +115,15 @@
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules/privacy-linkedin.json with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules/privacy-linkedin.json
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules/privacy-qwant-lite.json with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules/privacy-qwant-lite.json
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/rules/privacy-youtube.json with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/rules/privacy-youtube.json
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/analyzer with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/analyzer
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/background.html with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/background.html
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/background.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/background.js
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/install.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/install.js
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/main with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/main
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/migrate.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/migrate.js
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/options with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/options
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/popup with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/popup
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/_locales/en/manual.html with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/_locales/en/manual.html
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/_locales/en/manual.wiki with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/_locales/en/manual.wiki
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] FileFilter: ignoring file /tmp/requestcontrol/_locales/en/manual.wiki
@@ -142,9 +142,9 @@
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons/book-outline.svg with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons/book-outline.svg
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons/bookmark-outline.svg with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons/bookmark-outline.svg
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons/close-circle-outline.svg with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons/close-circle-outline.svg
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons/code-download-outline.svg with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons/code-download-outline.svg
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons/download-outline.svg with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons/download-outline.svg
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons/list-outline.svg with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons/list-outline.svg
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons/code-download-outline.svg with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons/code-download-outline.svg
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons/open-outline.svg with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons/open-outline.svg
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons/options-outline.svg with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons/options-outline.svg
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/icons/ionicons/shuffle-outline.svg with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/icons/ionicons/shuffle-outline.svg
@@ -190,9 +190,9 @@
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/popup/browser-action.css with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/popup/browser-action.css
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/popup/browser-action.html with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/popup/browser-action.html
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/popup/browser-action.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/popup/browser-action.js
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util/badges.css with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util/badges.css
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util/i18n.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util/i18n.js
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util/import-export.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util/import-export.js
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util/badges.css with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util/badges.css
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util/notifier.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util/notifier.js
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util/records.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util/records.js
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util/regexp.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util/regexp.js
@@ -201,8 +201,8 @@
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util/toc.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util/toc.js
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util/ui-helpers.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util/ui-helpers.js
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/util/uuid.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/util/uuid.js
-[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/main/analysis/url-analyzer.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/main/analysis/url-analyzer.js
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/main/analysis/rule-suggestions.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/main/analysis/rule-suggestions.js
+[/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/main/analysis/url-analyzer.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/main/analysis/url-analyzer.js
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/main/rules/base.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/main/rules/base.js
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/main/rules/block.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/main/rules/block.js
 [/tmp/requestcontrol/node_modules/web-ext/lib/util/file-filter.js][debug] Resolved path /tmp/requestcontrol/src/main/rules/filter.js with sourceDir /tmp/requestcontrol to /tmp/requestcontrol/src/main/rules/filter.js
