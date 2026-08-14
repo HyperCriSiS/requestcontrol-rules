@@ -2,17 +2,12 @@
 > test
 > node --experimental-vm-modules node_modules/.bin/jest --ci
 
-(node:2539) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:2420) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS test/url.test.js
-(node:2541) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:2423) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS test/filter.test.js
-(node:2540) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
-(Use `node --trace-warnings ...` to show where the warning was created)
-PASS test/origin-matcher.test.js
-PASS test/redirect.test.js
-PASS test/tld-wildcard-matcher.test.js
 FAIL test/control.test.js
   ● Rule creation fails
 
@@ -28,8 +23,12 @@ FAIL test/control.test.js
 
       at Object.<anonymous> (test/control.test.js:68:8)
 
+(node:2421) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS test/origin-matcher.test.js
+PASS test/redirect.test.js
+PASS test/tld-wildcard-matcher.test.js
 PASS test/request-filters.test.js
-PASS test/encodeDecode.test.js
 FAIL test/catalog.test.js
   ● ruleDigest ignores catalog management metadata
 
@@ -133,8 +132,9 @@ FAIL test/catalog.test.js
       at ruleDigest (src/main/catalog.js:113:38)
       at Object.<anonymous> (test/catalog.test.js:94:26)
 
-PASS test/url-analyzer.test.js
+PASS test/encodeDecode.test.js
 PASS test/include-exclude.test.js
+PASS test/url-analyzer.test.js
 PASS test/patterns.test.js
 PASS test/rule-suggestions.test.js
 Jest: importing JSON without an import attribute is deprecated and will be a hard error in the next major. Update the import of "/tmp/requestcontrol/rules/other-skip-image-downsamplers.json" (from /tmp/requestcontrol/test/predefined-rules.test.js): use `with { type: 'json' }` for static imports, or pass `{ with: { type: 'json' } }` as the second argument to dynamic `import()`.
@@ -164,5 +164,5 @@ Lines        : 92.19% ( 732/794 )
 Test Suites: 2 failed, 13 passed, 15 total
 Tests:       7 failed, 151 passed, 158 total
 Snapshots:   0 total
-Time:        2.582 s
+Time:        2.7 s
 Ran all test suites.
