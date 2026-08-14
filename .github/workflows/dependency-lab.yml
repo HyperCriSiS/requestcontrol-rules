@@ -1,0 +1,65 @@
+name: Request Control dependency lab
+
+on:
+  push:
+    branches:
+      - feature/dependency-lab
+    paths:
+      - "lab/input/**"
+      - ".github/workflows/dependency-lab.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  migrate-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: lab/input/package.json
+      - name: Checkout Request Control candidate
+        run: git clone --depth 1 --branch feature/modernization https://github.com/HyperCriSiS/requestcontrol.git /tmp/requestcontrol
+      - name: Apply dependency migration inputs
+        run: |
+          cp lab/input/package.json /tmp/requestcontrol/package.json
+          cp lab/input/eslint.config.js /tmp/requestcontrol/eslint.config.js
+          mkdir -p /tmp/requestcontrol/scripts
+          cp lab/input/validate-json.mjs /tmp/requestcontrol/scripts/validate-json.mjs
+          rm -f /tmp/requestcontrol/package-lock.json
+      - name: Install current dependencies
+        working-directory: /tmp/requestcontrol
+        run: npm install
+      - name: Unit tests
+        working-directory: /tmp/requestcontrol
+        run: npm test -- --ci
+      - name: Lint source and extension
+        working-directory: /tmp/requestcontrol
+        run: npm run lint
+      - name: Install build dependency
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+      - name: Build extension
+        working-directory: /tmp/requestcontrol
+        run: npm run build
+      - name: Lint built artifact
+        working-directory: /tmp/requestcontrol
+        run: npm run lint-build
+      - name: Save generated dependency artifacts
+        run: |
+          mkdir -p lab/generated/lib/tldts lab/generated/lib/lit
+          cp /tmp/requestcontrol/package-lock.json lab/generated/package-lock.json
+          cp /tmp/requestcontrol/lib/tldts/index.esm.min.js lab/generated/lib/tldts/index.esm.min.js
+          cp /tmp/requestcontrol/lib/lit/lit.css lab/generated/lib/lit/lit.css
+      - name: Commit generated artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add lab/generated
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: generate Request Control dependency lock"
+          git push origin HEAD:feature/dependency-lab
