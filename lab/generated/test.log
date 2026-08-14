@@ -2,158 +2,38 @@
 > test
 > node --experimental-vm-modules node_modules/.bin/jest --ci --coverage
 
-(node:2347) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
-(Use `node --trace-warnings ...` to show where the warning was created)
-PASS test/url.test.js
-(node:2348) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:2355) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS test/origin-matcher.test.js
-(node:2349) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:2354) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
+(node:2356) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS test/url.test.js
 PASS test/filter.test.js
 PASS test/redirect.test.js
 PASS test/tld-wildcard-matcher.test.js
-FAIL test/control.test.js
-  ● user is notified › Request blocked
-
-    expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 5
-    + Received  + 2
-
-      Object {
-    -   "action": "block",
-    -   "rule": BlockRule {
-    -     "tag": undefined,
-    -     "uuid": undefined,
-    -   },
-    +   "requestId": 0,
-    +   "url": "http://foo.com/click?p=240631&a=2314955&g=21407340&url=http%3A%2F%2Fbar.com%2F",
-      }
-
-    [0m [90m 111 |[39m         [36mconst[39m resolve [33m=[39m controller[33m.[39mresolve(request)[33m;[39m
-     [90m 112 |[39m         expect(resolve)[33m.[39mtoEqual({ cancel[33m:[39m [36mtrue[39m })[33m;[39m
-    [31m[1m>[22m[39m[90m 113 |[39m         expect(mockNotify[33m.[39mmock[33m.[39mcalls[[35m0[39m][[35m1[39m])[33m.[39mtoEqual({ action[33m:[39m [32m"block"[39m[33m,[39m rule[33m:[39m blockRule })[33m;[39m
-     [90m     |[39m                                             [31m[1m^[22m[39m
-     [90m 114 |[39m     })[33m;[39m
-     [90m 115 |[39m
-     [90m 116 |[39m     test([32m"Request redirected"[39m[33m,[39m () [33m=>[39m {[0m
-
-      at Object.<anonymous> (test/control.test.js:113:45)
-
-  ● user is notified › Request redirected
-
-    expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 1
-    + Received  + 1
-
-      Object {
-    -   "redirectUrl": "https://redirect.url/",
-    +   "upgradeToSecure": true,
-      }
-
-    [0m [90m 119 |[39m         controller[33m.[39mmark(request[33m,[39m redirectRule)[33m;[39m
-     [90m 120 |[39m         [36mconst[39m resolve [33m=[39m controller[33m.[39mresolve(request)[33m;[39m
-    [31m[1m>[22m[39m[90m 121 |[39m         expect(resolve)[33m.[39mtoEqual({ redirectUrl[33m:[39m [32m"https://redirect.url/"[39m })[33m;[39m
-     [90m     |[39m                         [31m[1m^[22m[39m
-     [90m 122 |[39m         expect(mockNotify[33m.[39mmock[33m.[39mcalls[[35m0[39m][[35m1[39m])[33m.[39mtoEqual({ action[33m:[39m [32m"redirect"[39m[33m,[39m rule[33m:[39m redirectRule })[33m;[39m
-     [90m 123 |[39m     })[33m;[39m
-     [90m 124 |[39m[0m
-
-      at Object.<anonymous> (test/control.test.js:121:25)
-
-  ● user is notified › Request upgraded to secure
-
-    expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 1
-    + Received  + 1
-
-      Object {
-    -   "redirectUrl": "https://foo.com/click?p=240631&a=2314955&g=21407340&url=http%3A%2F%2Fbar.com%2F",
-    +   "upgradeToSecure": true,
-      }
-
-    [0m [90m 127 |[39m         controller[33m.[39mmark(request[33m,[39m secureRule)[33m;[39m
-     [90m 128 |[39m         [36mconst[39m resolve [33m=[39m controller[33m.[39mresolve(request)[33m;[39m
-    [31m[1m>[22m[39m[90m 129 |[39m         expect(resolve)[33m.[39mtoEqual({ redirectUrl[33m:[39m [32m"https://foo.com/click?p=240631&a=2314955&g=21407340&url=http%3A%2F%2Fbar.com%2F"[39m })[33m;[39m
-     [90m     |[39m                         [31m[1m^[22m[39m
-     [90m 130 |[39m         expect(mockNotify[33m.[39mmock[33m.[39mcalls[[35m0[39m][[35m1[39m])[33m.[39mtoEqual({ action[33m:[39m [32m"secure"[39m[33m,[39m rule[33m:[39m secureRule })[33m;[39m
-     [90m 131 |[39m     })[33m;[39m
-     [90m 132 |[39m[0m
-
-      at Object.<anonymous> (test/control.test.js:129:25)
-
-  ● user is notified › Request filtered
-
-    expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 1
-    + Received  + 1
-
-      Object {
-    -   "redirectUrl": "http://foo.com/click",
-    +   "redirectUrl": "http://foo.com/click?url=http%3A%2F%2Fbar.com%2F",
-      }
-
-    [0m [90m 134 |[39m         controller[33m.[39mmark(request[33m,[39m filterParamsRule)[33m;[39m
-     [90m 135 |[39m         [36mconst[39m resolve [33m=[39m controller[33m.[39mresolve(request)[33m;[39m
-    [31m[1m>[22m[39m[90m 136 |[39m         expect(resolve)[33m.[39mtoEqual({ redirectUrl[33m:[39m [32m"http://foo.com/click"[39m })[33m;[39m
-     [90m     |[39m                         [31m[1m^[22m[39m
-     [90m 137 |[39m         expect(mockNotify[33m.[39mmock[33m.[39mcalls[[35m0[39m][[35m1[39m])[33m.[39mtoEqual({ action[33m:[39m [32m"filter"[39m[33m,[39m rule[33m:[39m filterParamsRule })[33m;[39m
-     [90m 138 |[39m     })[33m;[39m
-     [90m 139 |[39m[0m
-
-      at Object.<anonymous> (test/control.test.js:136:25)
-
-  ● user is notified › Request logged
-
-    expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 5
-    + Received  + 2
-
-      Object {
-    -   "action": "whitelist",
-    -   "rule": LoggedWhitelistRule {
-    -     "tag": undefined,
-    -     "uuid": undefined,
-    -   },
-    +   "requestId": 0,
-    +   "url": "http://foo.com/click?p=240631&a=2314955&g=21407340&url=http%3A%2F%2Fbar.com%2F",
-      }
-
-    [0m [90m 142 |[39m         [36mconst[39m resolve [33m=[39m controller[33m.[39mresolve(request)[33m;[39m
-     [90m 143 |[39m         expect(resolve)[33m.[39mtoBeFalsy()[33m;[39m
-    [31m[1m>[22m[39m[90m 144 |[39m         expect(mockNotify[33m.[39mmock[33m.[39mcalls[[35m0[39m][[35m1[39m])[33m.[39mtoEqual({ action[33m:[39m [32m"whitelist"[39m[33m,[39m rule[33m:[39m logRule })[33m;[39m
-     [90m     |[39m                                             [31m[1m^[22m[39m
-     [90m 145 |[39m     })[33m;[39m
-     [90m 146 |[39m })[33m;[39m
-     [90m 147 |[39m[0m
-
-      at Object.<anonymous> (test/control.test.js:144:45)
-
-PASS test/catalog.test.js
+PASS test/control.test.js
 PASS test/request-filters.test.js
+PASS test/catalog.test.js
 PASS test/encodeDecode.test.js
-PASS test/url-analyzer.test.js
-PASS test/include-exclude.test.js
-PASS test/rule-grouping.test.js
 PASS test/patterns.test.js
+PASS test/include-exclude.test.js
+PASS test/url-analyzer.test.js
+PASS test/rule-grouping.test.js
 PASS test/rule-suggestions.test.js
-PASS test/predefined-rules.test.js
 PASS test/tld.test.js
+PASS test/predefined-rules.test.js
 
 =============================== Coverage summary ===============================
-Statements   : 94.19% ( 763/810 )
-Branches     : 89.8% ( 405/451 )
-Functions    : 94.96% ( 151/159 )
-Lines        : 94.2% ( 748/794 )
+Statements   : 96.79% ( 784/810 )
+Branches     : 92.46% ( 417/451 )
+Functions    : 98.11% ( 156/159 )
+Lines        : 96.85% ( 769/794 )
 ================================================================================
 
-Test Suites: 1 failed, 15 passed, 16 total
-Tests:       5 failed, 144 passed, 149 total
+Test Suites: 16 passed, 16 total
+Tests:       161 passed, 161 total
 Snapshots:   0 total
-Time:        2.689 s
+Time:        2.347 s
 Ran all test suites.

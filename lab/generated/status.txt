@@ -3,4 +3,4 @@ test=success
 lint=success
 pandoc=success
 build=success
-lint-build=success
+lint-build=failure
