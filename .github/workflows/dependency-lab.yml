@@ -98,3 +98,5 @@ jobs:
           test "${{ steps.pandoc.outcome }}" = success
           test "${{ steps.build.outcome }}" = success
           test "${{ steps.lintbuild.outcome }}" = success
+
+# Retest trigger: 2026-08-14T15:29Z
