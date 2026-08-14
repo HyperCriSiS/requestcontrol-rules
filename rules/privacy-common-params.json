@@ -79,7 +79,8 @@
                 "xtor",
                 "yclid"
             ]
-        }
+        },
+        "group": "Privacy / Tracking parameters"
     },
     {
         "uuid": "1123f3fd-fde5-4992-af96-c580c0f69186",
@@ -100,6 +101,7 @@
         "active": true,
         "tag": "privacy-tracking-params",
         "title": "E-mail verification",
-        "description": "Most websites send activation links via e-mail to prevent spam. Some of these links are incorrectly filtered."
+        "description": "Most websites send activation links via e-mail to prevent spam. Some of these links are incorrectly filtered.",
+        "group": "Compatibility / E-mail verification"
     }
 ]
