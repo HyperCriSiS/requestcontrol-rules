@@ -2,28 +2,28 @@
 > test
 > node --experimental-vm-modules node_modules/.bin/jest --ci --coverage
 
-(node:2355) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:2260) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS test/origin-matcher.test.js
-(node:2354) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
-(Use `node --trace-warnings ...` to show where the warning was created)
-(node:2356) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+PASS test/filter.test.js
+(node:2258) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS test/url.test.js
-PASS test/filter.test.js
+(node:2259) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS test/origin-matcher.test.js
 PASS test/redirect.test.js
-PASS test/tld-wildcard-matcher.test.js
 PASS test/control.test.js
-PASS test/request-filters.test.js
+PASS test/tld-wildcard-matcher.test.js
 PASS test/catalog.test.js
+PASS test/request-filters.test.js
 PASS test/encodeDecode.test.js
-PASS test/patterns.test.js
-PASS test/include-exclude.test.js
 PASS test/url-analyzer.test.js
+PASS test/include-exclude.test.js
+PASS test/patterns.test.js
 PASS test/rule-grouping.test.js
+PASS test/predefined-rules.test.js
 PASS test/rule-suggestions.test.js
 PASS test/tld.test.js
-PASS test/predefined-rules.test.js
 
 =============================== Coverage summary ===============================
 Statements   : 96.79% ( 784/810 )
@@ -35,5 +35,5 @@ Lines        : 96.85% ( 769/794 )
 Test Suites: 16 passed, 16 total
 Tests:       161 passed, 161 total
 Snapshots:   0 total
-Time:        2.347 s
+Time:        1.874 s
 Ran all test suites.
