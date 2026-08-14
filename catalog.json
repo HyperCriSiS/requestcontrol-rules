@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "catalog": "requestcontrol-community",
+  "version": "0.1.0",
+  "updated": "2026-08-14",
+  "ruleSets": [
+    {
+      "id": "privacy-common-params",
+      "name": "Common tracking parameters",
+      "category": "privacy",
+      "group": "tracking-parameters",
+      "version": "0.1.0",
+      "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/rules/privacy-common-params.json",
+      "sha256": "af9db3c8b0ba2c91da55eb5e29f98becc171dd125271d4107faf5e4bf3ca2adb",
+      "source": "tumpio/requestcontrol",
+      "review": "required"
+    }
+  ]
+}
