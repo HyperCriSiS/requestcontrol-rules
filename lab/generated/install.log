@@ -17,7 +17,7 @@ npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and con
 
 'node_modules/@ajusa/lit/src/lit.css' -> 'lib/lit/lit.css'
 
-added 632 packages, and audited 633 packages in 18s
+added 632 packages, and audited 633 packages in 11s
 
 146 packages are looking for funding
   run `npm fund` for details
