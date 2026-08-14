@@ -27,39 +27,74 @@ jobs:
         run: |
           cp lab/input/package.json /tmp/requestcontrol/package.json
           cp lab/input/eslint.config.js /tmp/requestcontrol/eslint.config.js
-          mkdir -p /tmp/requestcontrol/scripts
+          mkdir -p /tmp/requestcontrol/scripts lab/generated
           cp lab/input/validate-json.mjs /tmp/requestcontrol/scripts/validate-json.mjs
           rm -f /tmp/requestcontrol/package-lock.json
-      - name: Install current dependencies
+      - id: install
+        name: Install current dependencies
         working-directory: /tmp/requestcontrol
-        run: npm install
-      - name: Unit tests
+        continue-on-error: true
+        run: npm install 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/install.log"
+      - id: test
+        name: Unit tests
+        if: steps.install.outcome == 'success'
         working-directory: /tmp/requestcontrol
-        run: npm test -- --ci
-      - name: Lint source and extension
+        continue-on-error: true
+        run: npm test -- --ci 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/test.log"
+      - id: lint
+        name: Lint source and extension
+        if: steps.install.outcome == 'success'
         working-directory: /tmp/requestcontrol
-        run: npm run lint
-      - name: Install build dependency
+        continue-on-error: true
+        run: npm run lint 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/lint.log"
+      - id: pandoc
+        name: Install build dependency
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
         run: sudo apt-get update && sudo apt-get install -y pandoc
-      - name: Build extension
+      - id: build
+        name: Build extension
+        if: steps.install.outcome == 'success' && steps.pandoc.outcome == 'success'
         working-directory: /tmp/requestcontrol
-        run: npm run build
-      - name: Lint built artifact
+        continue-on-error: true
+        run: npm run build 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/build.log"
+      - id: lintbuild
+        name: Lint built artifact
+        if: steps.build.outcome == 'success'
         working-directory: /tmp/requestcontrol
-        run: npm run lint-build
+        continue-on-error: true
+        run: npm run lint-build 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/lint-build.log"
       - name: Save generated dependency artifacts
+        if: always()
         run: |
           mkdir -p lab/generated/lib/tldts lab/generated/lib/lit
-          cp /tmp/requestcontrol/package-lock.json lab/generated/package-lock.json
-          cp /tmp/requestcontrol/lib/tldts/index.esm.min.js lab/generated/lib/tldts/index.esm.min.js
-          cp /tmp/requestcontrol/lib/lit/lit.css lab/generated/lib/lit/lit.css
-      - name: Commit generated artifacts
+          test ! -f /tmp/requestcontrol/package-lock.json || cp /tmp/requestcontrol/package-lock.json lab/generated/package-lock.json
+          test ! -f /tmp/requestcontrol/lib/tldts/index.esm.min.js || cp /tmp/requestcontrol/lib/tldts/index.esm.min.js lab/generated/lib/tldts/index.esm.min.js
+          test ! -f /tmp/requestcontrol/lib/lit/lit.css || cp /tmp/requestcontrol/lib/lit/lit.css lab/generated/lib/lit/lit.css
+          cat > lab/generated/status.txt <<EOF
+          install=${{ steps.install.outcome }}
+          test=${{ steps.test.outcome }}
+          lint=${{ steps.lint.outcome }}
+          pandoc=${{ steps.pandoc.outcome }}
+          build=${{ steps.build.outcome }}
+          lint-build=${{ steps.lintbuild.outcome }}
+          EOF
+      - name: Commit diagnostics and generated artifacts
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add lab/generated
-          if git diff --cached --quiet; then
-            exit 0
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: capture Request Control dependency lab results"
+            git push origin HEAD:feature/dependency-lab
           fi
-          git commit -m "chore: generate Request Control dependency lock"
-          git push origin HEAD:feature/dependency-lab
+      - name: Enforce migration success
+        if: always()
+        run: |
+          test "${{ steps.install.outcome }}" = success
+          test "${{ steps.test.outcome }}" = success
+          test "${{ steps.lint.outcome }}" = success
+          test "${{ steps.pandoc.outcome }}" = success
+          test "${{ steps.build.outcome }}" = success
+          test "${{ steps.lintbuild.outcome }}" = success
