@@ -31,30 +31,38 @@ jobs:
           cp lab/input/validate-json.mjs /tmp/requestcontrol/scripts/validate-json.mjs
           rm -f /tmp/requestcontrol/package-lock.json
       - id: install
-        name: Install current dependencies
+        name: Generate current dependency lock
         working-directory: /tmp/requestcontrol
         continue-on-error: true
         run: npm install 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/install.log"
+      - id: ci
+        name: Verify clean install from generated lock
+        if: steps.install.outcome == 'success'
+        working-directory: /tmp/requestcontrol
+        continue-on-error: true
+        run: |
+          rm -rf node_modules
+          npm ci 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/npm-ci.log"
       - id: test
         name: Unit tests
-        if: steps.install.outcome == 'success'
+        if: steps.ci.outcome == 'success'
         working-directory: /tmp/requestcontrol
         continue-on-error: true
         run: npm test -- --ci 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/test.log"
       - id: lint
         name: Lint source and extension
-        if: steps.install.outcome == 'success'
+        if: steps.ci.outcome == 'success'
         working-directory: /tmp/requestcontrol
         continue-on-error: true
         run: npm run lint 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/lint.log"
       - id: pandoc
         name: Install build dependency
-        if: steps.install.outcome == 'success'
+        if: steps.ci.outcome == 'success'
         continue-on-error: true
         run: sudo apt-get update && sudo apt-get install -y pandoc
       - id: build
         name: Build extension
-        if: steps.install.outcome == 'success' && steps.pandoc.outcome == 'success'
+        if: steps.ci.outcome == 'success' && steps.pandoc.outcome == 'success'
         working-directory: /tmp/requestcontrol
         continue-on-error: true
         run: npm run build 2>&1 | tee "$GITHUB_WORKSPACE/lab/generated/build.log"
@@ -73,6 +81,7 @@ jobs:
           test ! -f /tmp/requestcontrol/lib/lit/lit.css || cp /tmp/requestcontrol/lib/lit/lit.css lab/generated/lib/lit/lit.css
           cat > lab/generated/status.txt <<EOF
           install=${{ steps.install.outcome }}
+          npm-ci=${{ steps.ci.outcome }}
           test=${{ steps.test.outcome }}
           lint=${{ steps.lint.outcome }}
           pandoc=${{ steps.pandoc.outcome }}
@@ -93,6 +102,7 @@ jobs:
         if: always()
         run: |
           test "${{ steps.install.outcome }}" = success
+          test "${{ steps.ci.outcome }}" = success
           test "${{ steps.test.outcome }}" = success
           test "${{ steps.lint.outcome }}" = success
           test "${{ steps.pandoc.outcome }}" = success
