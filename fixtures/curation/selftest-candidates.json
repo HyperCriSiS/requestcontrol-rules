@@ -1,0 +1,20 @@
+{
+  "candidates": [
+    {
+      "sourceId": "clearurls-rules",
+      "kind": "parameter",
+      "key": "fbclid"
+    },
+    {
+      "sourceId": "clearurls-rules",
+      "kind": "parameter",
+      "key": "utm_source"
+    },
+    {
+      "sourceId": "clearurls-rules",
+      "kind": "parameter",
+      "key": "rc_fixture_tracking",
+      "hosts": ["metrics.example"]
+    }
+  ]
+}
