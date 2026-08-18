@@ -1,19 +1,24 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "catalog": "requestcontrol-community",
-  "version": "0.1.1",
-  "updated": "2026-08-14",
+  "version": "0.2.0",
+  "updated": "2026-08-18",
+  "ratingRepository": "HyperCriSiS/requestcontrol-rules",
+  "submissionUrl": "https://github.com/HyperCriSiS/requestcontrol-rules/issues/new?template=rule-set-submission.md",
   "ruleSets": [
     {
       "id": "privacy-common-params",
       "name": "Common tracking parameters",
+      "description": "Removes widely used tracking and attribution parameters from request URLs while preserving the destination URL.",
       "category": "privacy",
       "group": "tracking-parameters",
       "version": "0.1.1",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/rules/privacy-common-params.json",
+      "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/rules/privacy-common-params.json",
       "sha256": "952a27baec09e800a9b9b653d47aeb04c63df651cfd15b97150bcaf551ca677c",
       "source": "tumpio/requestcontrol",
-      "review": "required"
+      "review": "required",
+      "ratingIssue": 4
     }
   ]
 }
