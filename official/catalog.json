@@ -15,8 +15,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/developer-direct-raw.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/developer-direct-raw.json",
       "sha256": "76b86a51f4dd9cf56eca48589dd89356e7a1b8ccdcfa4f3440e257041002a520",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/developer-direct-raw.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "media-original-quality",
@@ -28,8 +27,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/media-original-quality.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/media-original-quality.json",
       "sha256": "367c658291f14c2bd5830e661c753282691bac024b89154d3c35378d0c27f85c",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/media-original-quality.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "other-skip-image-downsamplers",
@@ -41,9 +39,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/other-skip-image-downsamplers.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/other-skip-image-downsamplers.json",
       "sha256": "d499b854c1730fc1d993bef7cab6c9805b44cde567fa16e73fabe6340792745b",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/other-skip-image-downsamplers.json"],
-      "legacySources": ["https://tumpio.github.io/requestcontrol/rules/other-skip-image-downsamplers.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-aggressive-direct-links",
@@ -56,7 +52,6 @@
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-aggressive-direct-links.json",
       "sha256": "38c9376254b7ccda84e97e93950e9c8d1212db5760d77631cfb95ad181ec685f",
       "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-aggressive-direct-links.json"],
       "warning": true
     },
     {
@@ -69,9 +64,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-amazon.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-amazon.json",
       "sha256": "995f26f772b8ebef0ba916ef4d0f64e82dd3febbdb642dfda9a4116b258b75bb",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-amazon.json"],
-      "legacySources": ["https://tumpio.github.io/requestcontrol/rules/privacy-amazon.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-bing",
@@ -83,9 +76,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-bing.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-bing.json",
       "sha256": "c5b792d0f81820dd33f871eaf45f9d81b4514647b763b06004177f33dd0a079d",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-bing.json"],
-      "legacySources": ["https://tumpio.github.io/requestcontrol/rules/privacy-bing.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-block-beacon-and-ping",
@@ -97,9 +88,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-block-beacon-and-ping.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-block-beacon-and-ping.json",
       "sha256": "c85c656b19e4b57c636257afd5193c8586f60a76c2a03f341caa519c04237551",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-block-beacon-and-ping.json"],
-      "legacySources": ["https://tumpio.github.io/requestcontrol/rules/privacy-block-beacon-and-ping.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-common-images",
@@ -111,9 +100,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-common-images.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-common-images.json",
       "sha256": "da01fd8d9c86857f47088c90d62f3b1b53aaec66fd45bbd5a04145181eb93776",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-common-images.json"],
-      "legacySources": ["https://tumpio.github.io/requestcontrol/rules/privacy-common-images.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-common-params",
@@ -125,13 +112,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-common-params.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-common-params.json",
       "sha256": "76b5c2f84ffdd184b67994ec50a437b28da312ff75e24c74605caa65b61e9fea",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-common-params.json"],
-      "legacySources": [
-        "https://tumpio.github.io/requestcontrol/rules/privacy-common-params.json",
-        "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/rules/privacy-common-params.json"
-      ],
-      "legacySourceIds": ["requestcontrol-community/privacy-common-params"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-common-redirectors",
@@ -143,9 +124,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-common-redirectors.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-common-redirectors.json",
       "sha256": "5f6292156cb780fc07e8968f21be0648be9f739376514e1b3cb136d3884ec2bf",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-common-redirectors.json"],
-      "legacySources": ["https://tumpio.github.io/requestcontrol/rules/privacy-common-redirectors.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-duckduckgo",
@@ -157,9 +136,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-duckduckgo.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-duckduckgo.json",
       "sha256": "29b0b2b53fd72256df0d4a220c1306b213e4166367d5e4efbdb36d82d38f7a1a",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-duckduckgo.json"],
-      "legacySources": ["https://tumpio.github.io/requestcontrol/rules/privacy-duckduckgo.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-enhanced-embeds",
@@ -171,8 +148,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-enhanced-embeds.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-enhanced-embeds.json",
       "sha256": "7b8a3f172e32d38ef88139d3d17b98b4eb4dc2b2ff13af016df9bc1fdc41b991",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-enhanced-embeds.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-facebook",
@@ -184,9 +160,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-facebook.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-facebook.json",
       "sha256": "b1019486fa4b502688b006751a821e257b9543281ef7e736bce49a01e762e253",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-facebook.json"],
-      "legacySources": ["https://tumpio.github.io/requestcontrol/rules/privacy-facebook.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-google",
@@ -198,9 +172,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-google.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-google.json",
       "sha256": "1183a1fa59e2f6bf45dab7b8bbcf83a8bd0804abc2fd255ee19c1974b8ecf5ea",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-google.json"],
-      "legacySources": ["https://tumpio.github.io/requestcontrol/rules/privacy-google.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "privacy-youtube",
@@ -212,9 +184,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-youtube.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-youtube.json",
       "sha256": "71e9ea38ac89c4870eaefee658dda5cbc53c66e08d4d0dda86f8e7f9f9ab9923",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/privacy-youtube.json"],
-      "legacySources": ["https://tumpio.github.io/requestcontrol/rules/privacy-youtube.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "search-engine-escape",
@@ -226,8 +196,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/search-engine-escape.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/search-engine-escape.json",
       "sha256": "0491b29a16d07de845ad1b709f07e992875c18500e415f9b2a6bbc4ec425b144",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/search-engine-escape.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "special-first-party-firewall",
@@ -240,7 +209,6 @@
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/special-first-party-firewall.json",
       "sha256": "4eea26429e9c23bf412ebc631bb49d7e5e83e58a9b2a5ce1c9fd96c0f6d738f9",
       "review": "maintainer-approved",
-      "legacyPaths": ["rules/special-first-party-firewall.json"],
       "warning": true
     },
     {
@@ -253,8 +221,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/special-text-first-low-bandwidth.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/special-text-first-low-bandwidth.json",
       "sha256": "5983a749a0f23fb1a156ba899ccb8bf63b67d8d509f4560103d0fcb83ab35b00",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/special-text-first-low-bandwidth.json"]
+      "review": "maintainer-approved"
     },
     {
       "id": "web-canonical-desktop",
@@ -266,8 +233,7 @@
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/web-canonical-desktop.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/web-canonical-desktop.json",
       "sha256": "90443b70861574825857fd889f96d712d5e7c704558b411ca04e92f4a5be6b6c",
-      "review": "maintainer-approved",
-      "legacyPaths": ["rules/web-canonical-desktop.json"]
+      "review": "maintainer-approved"
     }
   ]
 }

@@ -93,3 +93,171 @@ export function adaptFastForwardFixture(entries = []) {
     notes: entry.notes || "",
   }));
 }
+
+export const CONFLICT = Object.freeze({
+  NONE: "none",
+  DUPLICATE: "duplicate",
+  NARROWER: "narrower",
+  BROADER: "broader",
+  CONTRADICTORY: "contradictory",
+});
+
+function escapeRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function globMatches(pattern, value) {
+  const source = `^${escapeRegex(pattern).replace(/\\\*/g, ".*")}$`;
+  return new RegExp(source, "i").test(value);
+}
+
+function relationForPattern(candidatePattern, officialPattern) {
+  if (candidatePattern === officialPattern) return "equal";
+  const candidateWildcard = candidatePattern.includes("*");
+  const officialWildcard = officialPattern.includes("*");
+  if (officialWildcard && !candidateWildcard && globMatches(officialPattern, candidatePattern)) return "candidate-narrower";
+  if (candidateWildcard && !officialWildcard && globMatches(candidatePattern, officialPattern)) return "candidate-broader";
+  return "none";
+}
+
+function ruleHosts(rule) {
+  if (rule?.pattern?.allUrls) return [];
+  const hosts = Array.isArray(rule?.pattern?.host) ? rule.pattern.host.map(host).filter(Boolean) : [];
+  return hosts.includes("*") ? [] : sortedUnique(hosts);
+}
+
+function hostPatternCovers(pattern, value) {
+  if (!pattern) return false;
+  if (pattern === "*") return true;
+  if (pattern === value) return true;
+  if (pattern.startsWith("*.")) {
+    const base = pattern.slice(2);
+    return value === base || value.endsWith(`.${base}`);
+  }
+  return globMatches(pattern, value);
+}
+
+function scopeRelation(candidateHosts, officialHosts) {
+  const candidateGlobal = candidateHosts.length === 0;
+  const officialGlobal = officialHosts.length === 0;
+  if (candidateGlobal && officialGlobal) return "equal";
+  if (!candidateGlobal && officialGlobal) return "candidate-narrower";
+  if (candidateGlobal && !officialGlobal) return "candidate-broader";
+
+  const candidateCovered = candidateHosts.every((candidateHost) => officialHosts.some((officialHost) => hostPatternCovers(officialHost, candidateHost)));
+  const officialCovered = officialHosts.every((officialHost) => candidateHosts.some((candidateHost) => hostPatternCovers(candidateHost, officialHost)));
+  if (candidateCovered && officialCovered) return "equal";
+  if (candidateCovered) return "candidate-narrower";
+  if (officialCovered) return "candidate-broader";
+  return "none";
+}
+
+function combineRelations(patternRelation, scope) {
+  if (patternRelation === "none" || scope === "none") return CONFLICT.NONE;
+  if (patternRelation === "equal" && scope === "equal") return CONFLICT.DUPLICATE;
+  const directions = new Set([patternRelation, scope]);
+  if (!directions.has("candidate-broader") && directions.has("candidate-narrower")) return CONFLICT.NARROWER;
+  if (!directions.has("candidate-narrower") && directions.has("candidate-broader")) return CONFLICT.BROADER;
+  return CONFLICT.NONE;
+}
+
+function pathMentionsParameter(paths, parameter) {
+  const needle = String(parameter || "").toLowerCase();
+  if (!needle) return false;
+  return paths.some((path) => String(path).toLowerCase().includes(`${needle}=`));
+}
+
+function compareParameterCandidate(candidate, rule) {
+  const scope = scopeRelation(candidate.hosts, ruleHosts(rule));
+  if (scope === "none") return CONFLICT.NONE;
+  const paths = Array.isArray(rule?.pattern?.path) ? rule.pattern.path : [];
+  if (rule?.action === "whitelist" && pathMentionsParameter(paths, candidate.key)) {
+    return CONFLICT.CONTRADICTORY;
+  }
+  if (rule?.action !== "filter") return CONFLICT.NONE;
+  const values = Array.isArray(rule?.paramsFilter?.values) ? rule.paramsFilter.values.map((value) => text(value).toLowerCase()) : [];
+  let best = CONFLICT.NONE;
+  for (const value of values) {
+    const relation = combineRelations(relationForPattern(candidate.key, value), scope);
+    if (relation === CONFLICT.DUPLICATE) return relation;
+    if (relation === CONFLICT.NARROWER) best = CONFLICT.NARROWER;
+    else if (relation === CONFLICT.BROADER && best === CONFLICT.NONE) best = CONFLICT.BROADER;
+  }
+  return best;
+}
+
+function compareRedirectCandidate(candidate, rule) {
+  const scope = scopeRelation(candidate.hosts, ruleHosts(rule));
+  if (scope === "none") return CONFLICT.NONE;
+  const paths = Array.isArray(rule?.pattern?.path) ? rule.pattern.path : [];
+  if (!pathMentionsParameter(paths, candidate.wrapperParameter)) return CONFLICT.NONE;
+  if (rule?.action === "whitelist") return CONFLICT.CONTRADICTORY;
+  if (!["filter", "redirect"].includes(rule?.action)) return CONFLICT.NONE;
+  if (scope === "equal") return CONFLICT.DUPLICATE;
+  if (scope === "candidate-narrower") return CONFLICT.NARROWER;
+  if (scope === "candidate-broader") return CONFLICT.BROADER;
+  return CONFLICT.NONE;
+}
+
+export function compareCandidateToOfficial(candidate, officialRules = []) {
+  const value = normalizeCandidate(candidate);
+  const matches = [];
+  for (const rule of officialRules) {
+    const relation = value.kind === KIND.PARAMETER
+      ? compareParameterCandidate(value, rule)
+      : compareRedirectCandidate(value, rule);
+    if (relation !== CONFLICT.NONE) {
+      matches.push({ relation, uuid: rule.uuid || null, title: rule.title || "" });
+    }
+  }
+
+  const priority = [CONFLICT.CONTRADICTORY, CONFLICT.DUPLICATE, CONFLICT.NARROWER, CONFLICT.BROADER];
+  const relation = priority.find((item) => matches.some((match) => match.relation === item)) || CONFLICT.NONE;
+  return { relation, matches };
+}
+
+function fixtureHost(candidate) {
+  return candidate.hosts[0]?.replace(/^\*\./, "fixture.") || "fixture.example";
+}
+
+export function generateCandidateFixtures(candidate) {
+  const value = normalizeCandidate(candidate);
+  const hostname = fixtureHost(value);
+  if (value.kind === KIND.PARAMETER) {
+    const encodedKey = encodeURIComponent(value.key.replace("*", "sample"));
+    return {
+      positive: [{ url: `https://${hostname}/article?${encodedKey}=tracking-value&keep=1`, expectation: "candidate-applies" }],
+      negative: [{ url: `https://${hostname}/article?keep=1`, expectation: "candidate-does-not-apply" }],
+    };
+  }
+  const parameter = encodeURIComponent(value.wrapperParameter);
+  const target = encodeURIComponent("https://destination.example/article");
+  return {
+    positive: [{ url: `https://${hostname}/redirect?${parameter}=${target}`, expectation: "candidate-applies" }],
+    negative: [{ url: `https://${hostname}/redirect?other=${target}`, expectation: "candidate-does-not-apply" }],
+  };
+}
+
+export function validateCandidateFixtures(fixtures) {
+  const positive = Array.isArray(fixtures?.positive) ? fixtures.positive : [];
+  const negative = Array.isArray(fixtures?.negative) ? fixtures.negative : [];
+  const validEntry = (entry) => typeof entry?.url === "string" && entry.url.startsWith("https://") && typeof entry?.expectation === "string";
+  return positive.length > 0 && negative.length > 0 && positive.every(validEntry) && negative.every(validEntry);
+}
+
+export function buildReviewReport(candidates = [], officialRules = []) {
+  const curated = curate(candidates);
+  return {
+    accepted: curated.accepted.map((item) => {
+      const conflict = compareCandidateToOfficial(item.candidate, officialRules);
+      const fixtures = generateCandidateFixtures(item.candidate);
+      return {
+        ...item,
+        conflict,
+        fixtures,
+        promotionReady: item.assessment.risk === RISK.LOW && conflict.relation === CONFLICT.NONE && validateCandidateFixtures(fixtures),
+      };
+    }),
+    rejected: curated.rejected,
+  };
+}
