@@ -14,10 +14,6 @@ Every package has a stable catalog ID, version and SHA-256 digest. Existing mana
 
 Community-submitted packages. Community popularity is not a safety or trust signal. Packages remain separate from Official until they have been independently reviewed, tested and deliberately promoted by maintainers.
 
-### Root `catalog.json` / `rules/`
-
-Legacy compatibility for Request Control Evo versions that predate the Official/Community channel split. New clients do not use this catalog.
-
 ## Update model
 
 The extension checks catalog metadata when the Imports view is opened. Installed remote packages are then checked against their published SHA-256 digest. Users can update one package or apply all currently available Official updates in bulk. Updates are never silently installed in the background.
@@ -54,3 +50,15 @@ node scripts/curation-selftest.mjs
 ```
 
 The validator checks both channel catalogs, package hashes, UUID uniqueness and basic rule structure.
+
+## Curation review gate
+
+External projects are discovery inputs only. Candidate rules are normalized offline and compared with the current `official/rules/` corpus before review. The report classifies a candidate relative to Official as `duplicate`, `narrower`, `broader`, `contradictory`, or `none`. A candidate is promotion-ready only when its risk is low, no Official conflict is found, and generated positive/negative fixtures are valid.
+
+Run a review locally with:
+
+```sh
+node scripts/review-candidates.mjs path/to/candidates.json
+```
+
+The command reads only local repository files. It does not fetch upstream data or execute third-party code. Source adapters remain separate development tooling, and provenance stays attached to every candidate through `sourceId`.

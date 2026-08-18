@@ -18,6 +18,7 @@ async function validateCatalog(catalogPath, rulesPath, expectedChannel) {
     if (!entry.id || ids.has(entry.id)) throw new Error(`${expectedChannel}: duplicate/missing catalog id`);
     ids.add(entry.id);
     if (!entry.name || !entry.version || !entry.url || !entry.sha256) throw new Error(`${expectedChannel}/${entry.id}: incomplete metadata`);
+    if (["legacySources", "legacySourceIds", "legacyPaths"].some((key) => key in entry)) throw new Error(`${expectedChannel}/${entry.id}: legacy source metadata is not allowed`);
     const file = `${entry.id}.json`;
     if (!files.has(file)) throw new Error(`${expectedChannel}/${entry.id}: missing ${file}`);
     const text = await readFile(new URL(file, rulesPath), "utf8");

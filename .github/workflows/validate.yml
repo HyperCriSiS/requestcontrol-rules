@@ -17,3 +17,4 @@ jobs:
           node-version: 22
       - run: node scripts/validate.mjs
       - run: node scripts/curation-selftest.mjs
+      - run: node scripts/review-candidates.mjs fixtures/curation/selftest-candidates.json > /tmp/curation-review.json
