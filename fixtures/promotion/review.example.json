@@ -1,0 +1,27 @@
+{
+  "decision": "approve",
+  "reviewer": "maintainer-github-login",
+  "reviewedAt": "2026-08-19",
+  "rationale": "Explain why the Community package is suitable for Official maintenance.",
+  "provenance": {
+    "sourceCatalog": "requestcontrol-community",
+    "sourceEntry": "replace-with-community-entry-id"
+  },
+  "acceptedRisks": [],
+  "fixtures": {
+    "replace-with-rule-uuid": {
+      "positive": [
+        {
+          "url": "https://example.com/?tracking_id=1",
+          "expectation": "describe the expected rule effect"
+        }
+      ],
+      "negative": [
+        {
+          "url": "https://example.com/?keep=1",
+          "expectation": "describe why this URL must remain unchanged"
+        }
+      ]
+    }
+  }
+}

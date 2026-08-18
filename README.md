@@ -47,6 +47,7 @@ CI runs:
 ```bash
 node scripts/validate.mjs
 node scripts/curation-selftest.mjs
+node scripts/promotion-selftest.mjs
 ```
 
 The validator checks both channel catalogs, package hashes, UUID uniqueness and basic rule structure.
@@ -62,3 +63,22 @@ node scripts/review-candidates.mjs path/to/candidates.json
 ```
 
 The command reads only local repository files. It does not fetch upstream data or execute third-party code. Source adapters remain separate development tooling, and provenance stays attached to every candidate through `sourceId`.
+
+## Community → Official promotion
+
+Promotion is deliberately **not automatic**. A Community package can only produce a promotion plan after an explicit maintainer review file is supplied:
+
+```sh
+node scripts/plan-community-promotion.mjs <community-entry-id> path/to/review.json
+```
+
+The plan:
+
+- preserves the Community catalog/entry/version/source digest as provenance;
+- detects exact Official duplicates and UUID collisions;
+- assesses broad/high-impact native rules;
+- requires explicit acceptance for every non-low-risk reason;
+- requires positive and negative review fixtures for every new rule;
+- emits a proposed Official entry/rule payload only when all gates pass.
+
+The command does **not** modify `official/`, publish a catalog, create a commit or merge a PR. Promotion therefore remains a deliberate maintainer action after reviewing the generated plan. `fixtures/promotion/review.example.json` documents the review format.
