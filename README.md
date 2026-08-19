@@ -34,7 +34,9 @@ This separation keeps external-source diagnostics, licensing decisions and maint
 
 `review-only` describes the trust boundary; it does **not** automatically mean that an upstream source is safe to parse. `scripts/sources.mjs` therefore records a separate adapter status and rationale for every research source. Only sources marked `active` may have an automated offline adapter.
 
-At present, the active adapters remain deliberately limited to ClearURLs reviewed parameter candidates and FastForward deterministic URL-only redirect candidates. Actually Legitimate URL Shortener Tool remains deferred: its list mixes per-entry provenance and contains regex, domain-exception and path-sensitive `$removeparam` semantics that must not be approximated as native Evo rules.
+At present, the active adapters remain deliberately limited to ClearURLs reviewed parameter candidates and FastForward deterministic URL-only redirect candidates. Actually Legitimate URL Shortener Tool remains deferred: its list mixes per-entry provenance and contains regex, domain-exception and path-sensitive `$removeparam` semantics that must not be approximated as native Evo rules. AdGuard URL Tracking is also deferred: although it contains a large simple `$removeparam` subset, its allowlist carries domain/path/content-type exceptions that must be modeled losslessly, and GPL-3.0 provenance needs an explicit license review before any adapter or promotion path is enabled.
+
+A `review-only` source whose adapter is not `active` is treated as high risk by the curation gate and can never be reported as `promotionReady`. This prevents manually supplied candidates from bypassing a deferred source-policy decision.
 
 ## Principles
 

@@ -17,6 +17,15 @@ assert.deepEqual(validateSources(), []);
 assert.deepEqual(getActiveAdapterSources().map((source) => source.id).sort(), ["clearurls-rules", "fastforward"]);
 assert.equal(getSource("legitimate-url-shortener").adapterStatus, ADAPTER_STATUS.DEFERRED);
 assert.match(getSource("legitimate-url-shortener").adapterNotes, /provenance/i);
+assert.equal(getSource("adguard-url-tracking").adapterStatus, ADAPTER_STATUS.DEFERRED);
+assert.match(getSource("adguard-url-tracking").adapterNotes, /allowlist/i);
+
+const deferredSourceReview = buildReviewReport([
+  { sourceId: "legitimate-url-shortener", kind: "parameter", key: "campaign_id", hosts: ["news.example"] },
+], []);
+assert.equal(deferredSourceReview.accepted[0].assessment.risk, RISK.HIGH);
+assert.equal(deferredSourceReview.accepted[0].assessment.reasons.includes("source-adapter-not-active"), true);
+assert.equal(deferredSourceReview.accepted[0].promotionReady, false);
 
 const clear = adaptClearUrlsFixture([{ hosts: ["Example.COM", "example.com"], parameters: ["utm_source", "session_token"] }]);
 const report = curate(clear);

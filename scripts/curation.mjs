@@ -1,4 +1,4 @@
-import { getSource, SOURCE_INTEGRATION } from "./sources.mjs";
+import { ADAPTER_STATUS, getSource, SOURCE_INTEGRATION } from "./sources.mjs";
 
 export const KIND = Object.freeze({ PARAMETER: "parameter", REDIRECT: "redirect" });
 export const RISK = Object.freeze({ LOW: "low", MEDIUM: "medium", HIGH: "high", BLOCKED: "blocked" });
@@ -44,6 +44,7 @@ export function assessRisk(candidate) {
   const source = getSource(value.sourceId);
   const reasons = [];
   if ([SOURCE_INTEGRATION.DEFERRED, SOURCE_INTEGRATION.INSPIRATION_ONLY].includes(source.integration)) reasons.push("source-not-directly-importable");
+  if (source.integration === SOURCE_INTEGRATION.REVIEW_ONLY && source.adapterStatus !== ADAPTER_STATUS.ACTIVE) reasons.push("source-adapter-not-active");
   if (value.kind === KIND.PARAMETER) {
     if (SENSITIVE.test(value.key)) reasons.push("sensitive-parameter-name");
     if (!value.hosts.length && !TRACKING.test(value.key)) reasons.push("global-parameter-scope");
@@ -52,7 +53,7 @@ export function assessRisk(candidate) {
     if (!value.hosts.length) reasons.push("redirect-without-host-scope");
     if (SENSITIVE.test(value.wrapperParameter)) reasons.push("sensitive-wrapper-parameter");
   }
-  if (reasons.some((reason) => reason.startsWith("source-not-") || reason.startsWith("sensitive-"))) return { risk: RISK.HIGH, reasons };
+  if (reasons.some((reason) => reason.startsWith("source-") || reason.startsWith("sensitive-"))) return { risk: RISK.HIGH, reasons };
   if (reasons.length) return { risk: RISK.MEDIUM, reasons };
   return { risk: RISK.LOW, reasons: [] };
 }

@@ -37,6 +37,14 @@ const SOURCES = Object.freeze([
     adapterNotes: "The upstream list contains mixed per-entry provenance plus regex, domain-exception and path-sensitive removeparam syntax. Require line-level provenance and deterministic semantics before adding an adapter.",
   },
   {
+    id: "adguard-url-tracking",
+    name: "AdGuard URL Tracking filter",
+    license: "GPL-3.0",
+    integration: SOURCE_INTEGRATION.DEFERRED,
+    adapterStatus: ADAPTER_STATUS.DEFERRED,
+    adapterNotes: "A large deterministic removeparam subset exists, but the upstream allowlist carries domain/path/content-type exceptions and GPL-3.0 provenance requires an explicit license review before any lossless adapter or promotion path is enabled.",
+  },
+  {
     id: "redirector",
     name: "Redirector",
     license: "MIT",
