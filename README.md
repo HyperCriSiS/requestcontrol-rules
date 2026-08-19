@@ -30,6 +30,12 @@ The extension never downloads upstream project data or runs their formats direct
 
 This separation keeps external-source diagnostics, licensing decisions and maintenance tooling out of the browser extension.
 
+### Adapter eligibility
+
+`review-only` describes the trust boundary; it does **not** automatically mean that an upstream source is safe to parse. `scripts/sources.mjs` therefore records a separate adapter status and rationale for every research source. Only sources marked `active` may have an automated offline adapter.
+
+At present, the active adapters remain deliberately limited to ClearURLs reviewed parameter candidates and FastForward deterministic URL-only redirect candidates. Actually Legitimate URL Shortener Tool remains deferred: its list mixes per-entry provenance and contains regex, domain-exception and path-sensitive `$removeparam` semantics that must not be approximated as native Evo rules.
+
 ## Principles
 
 - Declarative JSON data only; no remote executable code.

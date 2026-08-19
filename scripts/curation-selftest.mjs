@@ -11,9 +11,12 @@ import {
   generateCandidateFixtures,
   validateCandidateFixtures,
 } from "./curation.mjs";
-import { validateSources } from "./sources.mjs";
+import { ADAPTER_STATUS, getActiveAdapterSources, getSource, validateSources } from "./sources.mjs";
 
 assert.deepEqual(validateSources(), []);
+assert.deepEqual(getActiveAdapterSources().map((source) => source.id).sort(), ["clearurls-rules", "fastforward"]);
+assert.equal(getSource("legitimate-url-shortener").adapterStatus, ADAPTER_STATUS.DEFERRED);
+assert.match(getSource("legitimate-url-shortener").adapterNotes, /provenance/i);
 
 const clear = adaptClearUrlsFixture([{ hosts: ["Example.COM", "example.com"], parameters: ["utm_source", "session_token"] }]);
 const report = curate(clear);
