@@ -224,7 +224,7 @@ export function generateCandidateFixtures(candidate) {
   const value = normalizeCandidate(candidate);
   const hostname = fixtureHost(value);
   if (value.kind === KIND.PARAMETER) {
-    const encodedKey = encodeURIComponent(value.key.replace("*", "sample"));
+    const encodedKey = encodeURIComponent(value.key.replaceAll("*", "sample"));
     return {
       positive: [{ url: `https://${hostname}/article?${encodedKey}=tracking-value&keep=1`, expectation: "candidate-applies" }],
       negative: [{ url: `https://${hostname}/article?keep=1`, expectation: "candidate-does-not-apply" }],
