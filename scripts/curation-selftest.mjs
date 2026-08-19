@@ -1,15 +1,18 @@
 import assert from "node:assert/strict";
 import {
   CONFLICT,
+  KIND,
   RISK,
   adaptClearUrlsFixture,
   adaptFastForwardFixture,
+  adaptLegitimateUrlShortenerText,
   assessRisk,
   buildReviewReport,
   compareCandidateToOfficial,
   curate,
   generateCandidateFixtures,
   validateCandidateFixtures,
+  parseLegitimateUrlShortenerText,
 } from "./curation.mjs";
 import { validateSources } from "./sources.mjs";
 
@@ -21,6 +24,30 @@ assert.equal(report.accepted.length, 2);
 assert.equal(report.accepted[0].candidate.hosts[0], "example.com");
 assert.equal(assessRisk(report.accepted[0].candidate).risk, RISK.LOW);
 assert.equal(assessRisk(report.accepted[1].candidate).risk, RISK.HIGH);
+
+const legitimateText = `
+! comment
+$removeparam=gclid
+$removeparam=campaign_id,doc
+$doc,removeparam=ref_id,domain=example.com|shop.example
+||click.example^$removeparam=source
+$doc,removeparam=/^utm_.*$/i
+$doc,removeparam=smid,domain=~amazon.com|news.example
+.example.com/path^$removeparam=proxy
+$removeparam=AID,doc,denyallow=example.com
+`;
+const legitimateParsed = parseLegitimateUrlShortenerText(legitimateText);
+assert.equal(legitimateParsed.candidates.length, 4);
+assert.deepEqual(legitimateParsed.candidates[0], {
+  sourceId: "legitimate-url-shortener", kind: KIND.PARAMETER, key: "gclid", hosts: [],
+  notes: "Adapted from deterministic removeparam rule at upstream line 3",
+});
+assert.deepEqual(legitimateParsed.candidates[2].hosts, ["example.com", "shop.example"]);
+assert.deepEqual(legitimateParsed.candidates[3].hosts, ["click.example"]);
+assert.deepEqual(legitimateParsed.skipped.map((item) => item.reason), [
+  "non-literal-parameter", "complex-domain-scope", "unsupported-filter-shape", "unsupported-option",
+]);
+assert.equal(curate(adaptLegitimateUrlShortenerText(legitimateText)).accepted.length, 4);
 
 const ff = adaptFastForwardFixture([{ id: "wrapper", host: "go.example", parameter: "url" }]);
 assert.equal(curate(ff).accepted.length, 1);
