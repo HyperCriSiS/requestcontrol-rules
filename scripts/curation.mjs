@@ -83,6 +83,76 @@ export function adaptClearUrlsFixture(entries = []) {
   })));
 }
 
+function parseSimpleRemoveParamRule(line) {
+  const source = line.trim();
+  if (!source || source.startsWith("!") || source.startsWith("#")) return { skip: "non-rule" };
+
+  let hosts = [];
+  let optionText = "";
+  let parameter = "";
+
+  const hostScoped = source.match(/^\|\|([a-z0-9.-]+)\^\$removeparam=([^,]+)(?:,(.*))?$/i);
+  if (hostScoped) {
+    const hostname = host(hostScoped[1]);
+    if (!hostname || hostname.endsWith(".") || !hostname.includes(".")) return { skip: "ambiguous-host-scope" };
+    hosts = [hostname];
+    parameter = text(hostScoped[2]);
+    optionText = text(hostScoped[3]);
+  } else {
+    const documentRule = source.match(/^\$doc,removeparam=([^,]+)(?:,(.*))?$/i);
+    const globalRule = source.match(/^\$removeparam=([^,]+)(?:,(.*))?$/i);
+    const match = documentRule || globalRule;
+    if (!match) return { skip: "unsupported-filter-shape" };
+    parameter = text(match[1]);
+    optionText = text(match[2]);
+  }
+
+  if (!parameter || parameter.startsWith("/") || parameter.includes("*")) return { skip: "non-literal-parameter" };
+  if (!PARAMETER.test(parameter)) return { skip: "invalid-parameter-name" };
+
+  const options = optionText ? optionText.split(",").map(text).filter(Boolean) : [];
+  for (const option of options) {
+    if (/^(doc|document)$/i.test(option)) continue;
+    if (/^domain=/i.test(option)) {
+      const domainSpec = option.slice(option.indexOf("=") + 1);
+      const domains = domainSpec.split("|").map(text).filter(Boolean);
+      if (!domains.length || domains.some((domain) => domain.startsWith("~") || domain.includes("*") || domain.startsWith("/"))) {
+        return { skip: "complex-domain-scope" };
+      }
+      hosts = sortedUnique([...hosts, ...domains.map(host)]);
+      continue;
+    }
+    return { skip: "unsupported-option" };
+  }
+
+  return { parameter: parameter.toLowerCase(), hosts };
+}
+
+export function parseLegitimateUrlShortenerText(input = "") {
+  const candidates = [];
+  const skipped = [];
+  const lines = String(input || "").replace(/^\uFEFF/, "").split(/\r?\n/);
+  lines.forEach((line, index) => {
+    const parsed = parseSimpleRemoveParamRule(line);
+    if (parsed.skip === "non-rule") return;
+    if (parsed.skip) {
+      skipped.push({ line: index + 1, reason: parsed.skip });
+      return;
+    }
+    candidates.push({
+      sourceId: "legitimate-url-shortener",
+      kind: KIND.PARAMETER,
+      key: parsed.parameter,
+      hosts: parsed.hosts,
+      notes: `Adapted from deterministic removeparam rule at upstream line ${index + 1}`,
+    });
+  });
+  return { candidates, skipped };
+}
+
+export function adaptLegitimateUrlShortenerText(input = "") {
+  return parseLegitimateUrlShortenerText(input).candidates;
+}
 export function adaptFastForwardFixture(entries = []) {
   return entries.map((entry) => ({
     sourceId: "fastforward",

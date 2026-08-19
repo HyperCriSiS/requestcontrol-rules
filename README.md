@@ -22,13 +22,15 @@ Rule-package updates do not require a new extension release unless the rule engi
 
 ## External-source curation
 
-Research sources such as ClearURLs and FastForward are processed **outside the extension**. `scripts/sources.mjs` records source/license policy and `scripts/curation.mjs` normalizes reviewed candidate fixtures before maintainers turn them into native Request Control rules.
+Research sources such as ClearURLs, Actually Legitimate URL Shortener Tool and FastForward are processed **outside the extension**. `scripts/sources.mjs` records source/license policy and `scripts/curation.mjs` normalizes reviewed candidate fixtures before maintainers turn them into native Request Control rules.
 
 The extension never downloads upstream project data or runs their formats directly. The pipeline is:
 
 `upstream research -> offline adapter -> normalized candidate -> risk/conflict review -> regression fixtures -> Official native rule`
 
 This separation keeps external-source diagnostics, licensing decisions and maintenance tooling out of the browser extension.
+
+The Actually Legitimate URL Shortener adapter is deliberately conservative: it accepts only literal `removeparam` rules with directly representable global or positive host scope. Regex parameters, negative-domain scopes, path-specific filters, `denyallow` and other options are skipped for manual review instead of being broadened or approximated.
 
 ## Principles
 
