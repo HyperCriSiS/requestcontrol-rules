@@ -84,7 +84,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-amazon.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-amazon.json",
-      "sha256": "4d36fd6105edba785e7e80278cfe47da5e8456dcc246c229053d9cc3e2e8b216",
+      "sha256": "995f26f772b8ebef0ba916ef4d0f64e82dd3febbdb642dfda9a4116b258b75bb",
       "review": "maintainer-approved"
     },
     {
@@ -100,7 +100,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-bing.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-bing.json",
-      "sha256": "97aef2f00d66804d03c739890134e75f867e70d2eb6c6f95f3d7fa3ddc129637",
+      "sha256": "c5b792d0f81820dd33f871eaf45f9d81b4514647b763b06004177f33dd0a079d",
       "review": "maintainer-approved"
     },
     {
@@ -117,7 +117,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-block-beacon-and-ping.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-block-beacon-and-ping.json",
-      "sha256": "1157ee203446bc5fd7ea93be29a6a973c86d373601056a1cce8e3c9bd64dd135",
+      "sha256": "c85c656b19e4b57c636257afd5193c8586f60a76c2a03f341caa519c04237551",
       "review": "maintainer-approved"
     },
     {
@@ -134,7 +134,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-common-images.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-common-images.json",
-      "sha256": "96a5fa704c8892c2dbcb57c7700280618af92dadf7db3a6386ca37654590c8f5",
+      "sha256": "da01fd8d9c86857f47088c90d62f3b1b53aaec66fd45bbd5a04145181eb93776",
       "review": "maintainer-approved"
     },
     {
@@ -150,7 +150,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-common-params.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-common-params.json",
-      "sha256": "83d19275bf738b6df822af82b4e2492bf61529142736450023ae9da47acf9afa",
+      "sha256": "76b5c2f84ffdd184b67994ec50a437b28da312ff75e24c74605caa65b61e9fea",
       "review": "maintainer-approved"
     },
     {
@@ -166,7 +166,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-common-redirectors.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-common-redirectors.json",
-      "sha256": "dfce940d13fa4f786b8ec0cfc30e4ce811458a0a6854441891d0d1a8f8903633",
+      "sha256": "5f6292156cb780fc07e8968f21be0648be9f739376514e1b3cb136d3884ec2bf",
       "review": "maintainer-approved"
     },
     {
@@ -182,7 +182,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-duckduckgo.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-duckduckgo.json",
-      "sha256": "2c13226630ae19e695976ea29ac3becb28b7e393d3fc23b7df86788f92fcc777",
+      "sha256": "29b0b2b53fd72256df0d4a220c1306b213e4166367d5e4efbdb36d82d38f7a1a",
       "review": "maintainer-approved"
     },
     {
@@ -198,7 +198,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-enhanced-embeds.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-enhanced-embeds.json",
-      "sha256": "f275c2e1ebde1db83875556591e4f732caa46f735ccefc05363114fd50b787fc",
+      "sha256": "7b8a3f172e32d38ef88139d3d17b98b4eb4dc2b2ff13af016df9bc1fdc41b991",
       "review": "maintainer-approved"
     },
     {
@@ -214,7 +214,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-facebook.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-facebook.json",
-      "sha256": "7834ca0f242cc5cf12db10251d826284e6cdc63f3a95a5f45b342358a14386cf",
+      "sha256": "b1019486fa4b502688b006751a821e257b9543281ef7e736bce49a01e762e253",
       "review": "maintainer-approved"
     },
     {
@@ -230,7 +230,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-google.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-google.json",
-      "sha256": "a7725a951290f32b04e46fbb14b643c197039b6b62b9e1666ea6c2c33cf719a1",
+      "sha256": "1183a1fa59e2f6bf45dab7b8bbcf83a8bd0804abc2fd255ee19c1974b8ecf5ea",
       "review": "maintainer-approved"
     },
     {
@@ -246,7 +246,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-youtube.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-youtube.json",
-      "sha256": "c4e9e14587be1d868389524f68e49e3aa7d51f0a9e35fa86a65ffb877d562919",
+      "sha256": "71e9ea38ac89c4870eaefee658dda5cbc53c66e08d4d0dda86f8e7f9f9ab9923",
       "review": "maintainer-approved"
     },
     {
@@ -263,7 +263,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/search-engine-escape.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/search-engine-escape.json",
-      "sha256": "40f9a2a12ddc81e46d7ef79e7bd2f41a7395cf25a0b74cd883c87157f9d38668",
+      "sha256": "0491b29a16d07de845ad1b709f07e992875c18500e415f9b2a6bbc4ec425b144",
       "review": "maintainer-approved"
     },
     {
@@ -280,7 +280,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/special-first-party-firewall.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/special-first-party-firewall.json",
-      "sha256": "5b7fb4a5bd8ccf5e86fa51df9af5f157c775682a336b9386fca2c3a6b1566131",
+      "sha256": "4eea26429e9c23bf412ebc631bb49d7e5e83e58a9b2a5ce1c9fd96c0f6d738f9",
       "review": "maintainer-approved"
     },
     {
@@ -297,7 +297,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/special-text-first-low-bandwidth.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/special-text-first-low-bandwidth.json",
-      "sha256": "4025516515247cb957207818b8b7f7ed1f4f28e2f75267aa5c175a5b5fb26563",
+      "sha256": "5983a749a0f23fb1a156ba899ccb8bf63b67d8d509f4560103d0fcb83ab35b00",
       "review": "maintainer-approved"
     },
     {
@@ -313,7 +313,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/web-canonical-desktop.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/web-canonical-desktop.json",
-      "sha256": "b840e845a5723b5f9e8ca70a830574151a6a299444727de9c99ea76f679ed406",
+      "sha256": "90443b70861574825857fd889f96d712d5e7c704558b411ca04e92f4a5be6b6c",
       "review": "maintainer-approved"
     }
   ]
