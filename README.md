@@ -14,6 +14,21 @@ Every package has a stable catalog ID, version and SHA-256 digest. Existing mana
 
 Community-submitted packages. Community popularity is not a safety or trust signal. Packages remain separate from Official until they have been independently reviewed, tested and deliberately promoted by maintainers.
 
+## Catalog presentation metadata
+
+Trust and behavior are separate dimensions. `official`, `community`, and `custom` identify provenance/trust channels; they are not behavior categories.
+
+Every published catalog entry carries:
+
+- `presentation`: `standard` or `advanced`;
+- `behavior`: the package's primary user-facing job;
+- `scope`: `site-specific`, `cross-site`, or `global`;
+- `risk`: `low`, `medium`, or `high`.
+
+Standard packages cover common URL cleanup, curated direct-link handling, URL normalization, site cleanup, privacy-enhanced embeds, and narrowly scoped media transformations. Advanced packages contain broader, unusual, disruptive, or expert-oriented behavior such as global request blocking, heuristic image manipulation, provider overrides, firewall modes, or text-first/low-bandwidth modes.
+
+These fields affect discoverability only. They do not change rule execution, package IDs, native UUIDs, or managed-update identity. See `docs/official-catalog-audit.md` for the current Official classification and audit rationale.
+
 ## Update model
 
 The extension checks catalog metadata when the Imports view is opened. Installed remote packages are then checked against their published SHA-256 digest. Users can update one package or apply all currently available Official updates in bulk. Updates are never silently installed in the background.
@@ -58,7 +73,7 @@ node scripts/curation-selftest.mjs
 node scripts/promotion-selftest.mjs
 ```
 
-The validator checks both channel catalogs, package hashes, UUID uniqueness and basic rule structure.
+The validator checks both channel catalogs, package hashes, UUID uniqueness, basic rule structure, and the required presentation/behavior/scope/risk metadata.
 
 ## Curation review gate
 

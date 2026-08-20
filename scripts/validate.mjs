@@ -5,6 +5,22 @@ async function readJson(url) {
   return JSON.parse(await readFile(url, "utf8"));
 }
 
+const PRESENTATIONS = new Set(["standard", "advanced"]);
+const BEHAVIORS = new Set([
+  "direct-link",
+  "media-quality",
+  "media-url-cleanup",
+  "site-cleanup",
+  "request-blocking",
+  "url-cleanup",
+  "privacy-embed",
+  "provider-override",
+  "special-mode",
+  "url-normalization",
+]);
+const SCOPES = new Set(["site-specific", "cross-site", "global"]);
+const RISKS = new Set(["low", "medium", "high"]);
+
 async function validateCatalog(catalogPath, rulesPath, expectedChannel) {
   const catalog = await readJson(catalogPath);
   if (catalog.schemaVersion !== 3 || catalog.channel !== expectedChannel || !catalog.catalog || !Array.isArray(catalog.ruleSets)) {
@@ -18,6 +34,10 @@ async function validateCatalog(catalogPath, rulesPath, expectedChannel) {
     if (!entry.id || ids.has(entry.id)) throw new Error(`${expectedChannel}: duplicate/missing catalog id`);
     ids.add(entry.id);
     if (!entry.name || !entry.version || !entry.url || !entry.sha256) throw new Error(`${expectedChannel}/${entry.id}: incomplete metadata`);
+    if (!PRESENTATIONS.has(entry.presentation)) throw new Error(`${expectedChannel}/${entry.id}: invalid/missing presentation`);
+    if (!BEHAVIORS.has(entry.behavior)) throw new Error(`${expectedChannel}/${entry.id}: invalid/missing behavior`);
+    if (!SCOPES.has(entry.scope)) throw new Error(`${expectedChannel}/${entry.id}: invalid/missing scope`);
+    if (!RISKS.has(entry.risk)) throw new Error(`${expectedChannel}/${entry.id}: invalid/missing risk`);
     if (["legacySources", "legacySourceIds", "legacyPaths"].some((key) => key in entry)) throw new Error(`${expectedChannel}/${entry.id}: legacy source metadata is not allowed`);
     const file = `${entry.id}.json`;
     if (!files.has(file)) throw new Error(`${expectedChannel}/${entry.id}: missing ${file}`);
