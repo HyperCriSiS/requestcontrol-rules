@@ -2,8 +2,8 @@
   "schemaVersion": 3,
   "channel": "official",
   "catalog": "requestcontrol-official",
-  "version": "1.2.0",
-  "updated": "2026-08-21",
+  "version": "1.3.0",
+  "updated": "2026-08-22",
   "ruleSets": [
     {
       "id": "developer-direct-raw",
@@ -34,7 +34,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/media-original-quality.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/media-original-quality.json",
-      "sha256": "367c658291f14c2bd5830e661c753282691bac024b89154d3c35378d0c27f85c",
+      "sha256": "1c18ff7d91c514df6640847662efae062d0795830426209942db8324a6a21d69",
       "review": "maintainer-approved"
     },
     {
@@ -47,11 +47,10 @@
       "behavior": "media-url-cleanup",
       "scope": "global",
       "risk": "medium",
-      "warning": true,
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/other-skip-image-downsamplers.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/other-skip-image-downsamplers.json",
-      "sha256": "d499b854c1730fc1d993bef7cab6c9805b44cde567fa16e73fabe6340792745b",
+      "sha256": "7b9d62a4340ac1141f9ebd5b06025ae0f271666f3f94db6a8e76a0ec22993fc2",
       "review": "maintainer-approved"
     },
     {
@@ -64,23 +63,22 @@
       "behavior": "direct-link",
       "scope": "cross-site",
       "risk": "medium",
-      "warning": true,
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-aggressive-direct-links.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-aggressive-direct-links.json",
-      "sha256": "38c9376254b7ccda84e97e93950e9c8d1212db5760d77631cfb95ad181ec685f",
+      "sha256": "8402739c644e9a3c09478fd6fe29f546eaf9fb40ccb3d5a823181549f3b274fa",
       "review": "maintainer-approved"
     },
     {
       "id": "privacy-amazon",
-      "name": "Amazon privacy rules",
-      "description": "Cleans Amazon/Prime Video URLs and skips the supported Amazon Picasso redirect wrapper.",
+      "name": "Amazon / Prime Video URL cleanup",
+      "description": "Cleans Amazon/Prime Video navigation with a strict allowed-parameter set and skips the supported Amazon Picasso redirect wrapper.",
       "category": "privacy",
       "group": "site-specific",
       "presentation": "standard",
       "behavior": "site-cleanup",
       "scope": "site-specific",
-      "risk": "low",
+      "risk": "medium",
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-amazon.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-amazon.json",
@@ -89,7 +87,7 @@
     },
     {
       "id": "privacy-bing",
-      "name": "Bing privacy rules",
+      "name": "Bing URL cleanup",
       "description": "Removes selected tracking and presentation parameters from Bing URLs.",
       "category": "privacy",
       "group": "site-specific",
@@ -105,8 +103,8 @@
     },
     {
       "id": "privacy-block-beacon-and-ping",
-      "name": "Block Beacon/Ping request types",
-      "description": "Blocks Beacon and Ping request types globally; this can suppress site telemetry and may affect edge-case workflows.",
+      "name": "Block Ping / Beacon requests",
+      "description": "Blocks Ping requests by default and provides a separate disabled Beacon blocker because Beacon has higher compatibility risk.",
       "category": "privacy",
       "group": "request-types",
       "presentation": "advanced",
@@ -114,15 +112,15 @@
       "scope": "global",
       "risk": "medium",
       "warning": true,
-      "version": "1.0.0",
+      "version": "1.1.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-block-beacon-and-ping.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-block-beacon-and-ping.json",
-      "sha256": "c85c656b19e4b57c636257afd5193c8586f60a76c2a03f341caa519c04237551",
+      "sha256": "8d2577601f32cf441f3aedca3e76039cb0901f813dbd8c18c54bbbcc71633c2a",
       "review": "maintainer-approved"
     },
     {
       "id": "privacy-common-images",
-      "name": "Image/media URL cleanup",
+      "name": "Aggressive image/media URL cleanup",
       "description": "Applies broad image/media URL cleanup with many compatibility allow-rules; expert use only because image delivery can break.",
       "category": "privacy",
       "group": "images",
@@ -139,27 +137,27 @@
     },
     {
       "id": "privacy-common-params",
-      "name": "Remove tracking URL parameters",
-      "description": "Removes common tracking parameters from navigation URLs while retaining a compatibility exception.",
+      "name": "Tracking URL parameter cleanup",
+      "description": "Removes well-known tracking parameters from navigation URLs; broad ref/referrer/share cleanup is available separately and disabled by default.",
       "category": "privacy",
       "group": "tracking-parameters",
       "presentation": "standard",
       "behavior": "url-cleanup",
       "scope": "global",
       "risk": "medium",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-common-params.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-common-params.json",
-      "sha256": "76b5c2f84ffdd184b67994ec50a437b28da312ff75e24c74605caa65b61e9fea",
+      "sha256": "874572edc8d854f58b3334fea8eb477cf08ecebe03b237959086ecaa5b59ad3e",
       "review": "maintainer-approved"
     },
     {
       "id": "privacy-common-redirectors",
       "name": "Skip common URL redirectors",
-      "description": "Skips a curated set of redirectors and dereferrers; the broadest heuristic rule remains disabled by default.",
+      "description": "Bypasses curated redirectors and dereferrers across navigation, frames and selected media helpers; the broad global heuristic remains disabled by default.",
       "category": "privacy",
       "group": "redirects",
-      "presentation": "standard",
+      "presentation": "advanced",
       "behavior": "direct-link",
       "scope": "cross-site",
       "risk": "medium",
@@ -171,7 +169,7 @@
     },
     {
       "id": "privacy-duckduckgo",
-      "name": "DuckDuckGo privacy rules",
+      "name": "DuckDuckGo direct-link cleanup",
       "description": "Skips DuckDuckGo's supported outbound redirect wrapper.",
       "category": "privacy",
       "group": "site-specific",
@@ -198,12 +196,12 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/privacy-enhanced-embeds.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/privacy-enhanced-embeds.json",
-      "sha256": "7b8a3f172e32d38ef88139d3d17b98b4eb4dc2b2ff13af016df9bc1fdc41b991",
+      "sha256": "04b6aeab46353fcde69c7782b37ffc28f07500abc6087670075075af39673f78",
       "review": "maintainer-approved"
     },
     {
       "id": "privacy-facebook",
-      "name": "Facebook privacy rules",
+      "name": "Facebook / Instagram URL cleanup",
       "description": "Cleans Facebook/Instagram link wrappers and selected parameters and normalizes fb.me links.",
       "category": "privacy",
       "group": "site-specific",
@@ -219,7 +217,7 @@
     },
     {
       "id": "privacy-google",
-      "name": "Google privacy rules",
+      "name": "Google URL cleanup",
       "description": "Cleans Google result/page URLs and skips Google AMP redirects; the image anonymization rule stays disabled by default.",
       "category": "privacy",
       "group": "site-specific",
@@ -235,7 +233,7 @@
     },
     {
       "id": "privacy-youtube",
-      "name": "YouTube privacy rules",
+      "name": "YouTube URL cleanup",
       "description": "Cleans YouTube URLs and normalizes youtu.be links; the logger-blocking rule stays disabled by default.",
       "category": "privacy",
       "group": "site-specific",
@@ -263,7 +261,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/search-engine-escape.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/search-engine-escape.json",
-      "sha256": "0491b29a16d07de845ad1b709f07e992875c18500e415f9b2a6bbc4ec425b144",
+      "sha256": "37c1084882613606334493eb4c54a4aa98c4cc8cd1fa2a2c75db47e3a4038686",
       "review": "maintainer-approved"
     },
     {
@@ -280,13 +278,13 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/special-first-party-firewall.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/special-first-party-firewall.json",
-      "sha256": "4eea26429e9c23bf412ebc631bb49d7e5e83e58a9b2a5ce1c9fd96c0f6d738f9",
+      "sha256": "fe758681217b94e9fa4f59111785eb7ece5a9e6da41ce3382fe3c85ba38582d9",
       "review": "maintainer-approved"
     },
     {
       "id": "special-text-first-low-bandwidth",
       "name": "Text-first / low bandwidth",
-      "description": "Blocks images, media, and web fonts globally to create a text-first low-bandwidth browsing mode.",
+      "description": "Blocks images, media and web fonts globally for a text-first low-bandwidth mode; imported rules are active immediately and can substantially change page rendering.",
       "category": "special",
       "group": "low-bandwidth",
       "presentation": "advanced",
@@ -313,7 +311,7 @@
       "version": "1.0.0",
       "url": "https://raw.githubusercontent.com/HyperCriSiS/requestcontrol-rules/main/official/rules/web-canonical-desktop.json",
       "homepage": "https://github.com/HyperCriSiS/requestcontrol-rules/blob/main/official/rules/web-canonical-desktop.json",
-      "sha256": "90443b70861574825857fd889f96d712d5e7c704558b411ca04e92f4a5be6b6c",
+      "sha256": "29846d72c69b7ccde6bbf87467c1558de6de3761ad50a20b9dbd77cae530239b",
       "review": "maintainer-approved"
     }
   ]
