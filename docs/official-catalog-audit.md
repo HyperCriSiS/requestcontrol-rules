@@ -45,6 +45,40 @@ The catalog ID, package URL, native rule UUIDs, and managed-source identity are 
 | `special-text-first-low-bandwidth` | block×3 | special-mode | global | high | Advanced | Global text-first mode. Blocks images, media and fonts; disruptive mode rather than normal filtering. | Advanced/high risk; explicit warning. |
 | `web-canonical-desktop` | redirect×3 | url-normalization | site-specific | low | Standard | Mobile-to-desktop URL normalization. Distinct URL-normalization behavior; rules disabled by default. | Keep Standard. |
 
+## Final maintenance decisions
+
+The package-by-package review is complete. The outcome is deliberately conservative: no current package is merged or removed merely to make the list shorter. Display naming is corrected where the previous label understated or misrepresented behavior, while managed IDs and native UUIDs remain stable.
+
+| Package | Final 1.20-era maintenance decision |
+| --- | --- |
+| `developer-direct-raw` | Keep unchanged; narrow, coherent developer convenience package. |
+| `media-original-quality` | Keep unchanged; narrow media transformation. |
+| `other-skip-image-downsamplers` | Keep Advanced; tighten scope only if future evidence supports a lossless restriction. Do not merge into Common Images. |
+| `privacy-aggressive-direct-links` | Keep Advanced and separate; overlap with site-specific wrappers is conceptual, not duplicate rule payload. Revisit only with UUID-preserving migration. |
+| `privacy-amazon` | Keep unchanged. |
+| `privacy-bing` | Keep unchanged. |
+| `privacy-block-beacon-and-ping` | Keep Advanced; display name clarified to **Block Beacon/Ping request types**. Do not fold into generic blocker lists. |
+| `privacy-common-images` | Keep Advanced/high-risk for compatibility; display name clarified to **Image/media URL cleanup**. This is the first split candidate, but only after an explicit managed-rule migration design exists. |
+| `privacy-common-params` | Keep as the core Standard tracking-parameter cleanup package. |
+| `privacy-common-redirectors` | Keep Standard; retain separate from Aggressive Direct Links because active scope/heuristics differ. |
+| `privacy-duckduckgo` | Keep unchanged. |
+| `privacy-enhanced-embeds` | Keep unchanged; do not merge with provider/site cleanup. |
+| `privacy-facebook` | Keep site-specific package; do not deduplicate wrapper logic until managed migration can preserve local modifications. |
+| `privacy-google` | Keep site-specific package; disabled image rule remains explicit context rather than reason for a split today. |
+| `privacy-youtube` | Keep package coherent around YouTube cleanup; disabled logger blocker remains optional and called out in description. |
+| `search-engine-escape` | Keep Advanced/high-risk; display name clarified to **Search provider override**. Never present as ordinary privacy cleanup. |
+| `special-first-party-firewall` | Keep Advanced/high-risk and disabled by default. |
+| `special-text-first-low-bandwidth` | Keep Advanced/high-risk and separate as an intentional browsing mode. |
+| `web-canonical-desktop` | Keep unchanged. |
+
+### Consolidation outcome
+
+- **No merge is justified today.** The overlapping direct-link packages differ in host scope, heuristics, defaults, or maintenance intent. Combining them would create migration risk without enough user-facing benefit.
+- **One future split is justified:** `privacy-common-images`. Its 7 filters plus 15 compatibility whitelists are too broad for a single deceptively simple package. The split is postponed until the extension has an explicit source/package migration contract.
+- **One future scope-tightening candidate remains:** `other-skip-image-downsamplers`. It should become narrower only if deterministic host/path constraints can be proven without losing useful behavior.
+- **Three display labels are corrected now:** Common Images, Search Engine Escape, and Beacon/Ping blocking. These are metadata-only changes and do not alter installed managed identity or rule semantics.
+- All other packages retain their current boundaries. Any later restructuring must be driven by actual overlap/maintenance evidence rather than catalog neatness.
+
 ## Cross-package findings
 
 1. **Image privacy is the largest current complexity hotspot.** `privacy-common-images` is not a simple tracking-parameter list: it contains 22 native rules, including 15 compatibility whitelists. It is therefore classified Advanced/high risk and should be the first candidate for future decomposition.

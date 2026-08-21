@@ -2,8 +2,8 @@
   "schemaVersion": 3,
   "channel": "official",
   "catalog": "requestcontrol-official",
-  "version": "1.1.0",
-  "updated": "2026-08-20",
+  "version": "1.2.0",
+  "updated": "2026-08-21",
   "ruleSets": [
     {
       "id": "developer-direct-raw",
@@ -105,7 +105,7 @@
     },
     {
       "id": "privacy-block-beacon-and-ping",
-      "name": "Block beacon and ping requests",
+      "name": "Block Beacon/Ping request types",
       "description": "Blocks Beacon and Ping request types globally; this can suppress site telemetry and may affect edge-case workflows.",
       "category": "privacy",
       "group": "request-types",
@@ -122,8 +122,8 @@
     },
     {
       "id": "privacy-common-images",
-      "name": "Remove image tracking parameters",
-      "description": "Applies broad image/media URL cleanup with many compatibility allow-rules; intended for expert use because image delivery can break.",
+      "name": "Image/media URL cleanup",
+      "description": "Applies broad image/media URL cleanup with many compatibility allow-rules; expert use only because image delivery can break.",
       "category": "privacy",
       "group": "images",
       "presentation": "advanced",
@@ -251,8 +251,8 @@
     },
     {
       "id": "search-engine-escape",
-      "name": "Search engine redirect escape",
-      "description": "Rewrites Google and Bing search result pages to DuckDuckGo; intentionally changes the selected search provider and is disabled by default.",
+      "name": "Search provider override",
+      "description": "Rewrites supported Google and Bing searches to DuckDuckGo; intentionally changes the selected search provider and is disabled by default.",
       "category": "privacy",
       "group": "redirects",
       "presentation": "advanced",
