@@ -51,6 +51,34 @@ assert.equal(deferredSourceReview.accepted[0].assessment.reasons.includes("sourc
 assert.equal(deferredSourceReview.accepted[0].promotionReady, false);
 assert.equal(deferredSourceReview.accepted[0].candidate.provenance.sourceLine, 42);
 
+const unboundRevision = curate([{
+  sourceId: "legitimate-url-shortener",
+  kind: "parameter",
+  key: "campaign_id",
+  hosts: ["news.example"],
+  provenance: {
+    sourceUrl: "https://github.com/DandelionSprout/adfilt/blob/master/LegitimateURLShortener.txt",
+    sourceRevision: "deadbeef",
+    sourceLine: 42,
+    license: "Dandelicence",
+  },
+}]);
+assert.deepEqual(unboundRevision.rejected[0].reasons, ["unbound-provenance-source-revision"]);
+
+const distinctLineage = curate([
+  deferredSourceReview.accepted[0].candidate,
+  {
+    ...deferredSourceReview.accepted[0].candidate,
+    provenance: {
+      sourceUrl: "https://github.com/DandelionSprout/adfilt/blob/example/LegitimateURLShortener.txt",
+      sourceRevision: "example",
+      sourceLine: 84,
+      license: "Dandelicence",
+    },
+  },
+]);
+assert.equal(distinctLineage.accepted.length, 2);
+
 const clear = adaptClearUrlsFixture([{ hosts: ["Example.COM", "example.com"], parameters: ["utm_source", "session_token"] }]);
 const report = curate(clear);
 assert.equal(report.accepted.length, 2);

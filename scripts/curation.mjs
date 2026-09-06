@@ -45,7 +45,9 @@ export function validateCandidate(candidate) {
   const source = getSource(candidate.sourceId);
   if (source?.provenanceRequirement === PROVENANCE_REQUIREMENT.ENTRY_LEVEL) {
     if (!candidate.provenance.sourceUrl) errors.push("missing-provenance-source-url");
+    else if (!candidate.provenance.sourceUrl.startsWith("https://")) errors.push("invalid-provenance-source-url");
     if (!candidate.provenance.sourceRevision) errors.push("missing-provenance-source-revision");
+    else if (candidate.provenance.sourceUrl && !candidate.provenance.sourceUrl.includes(candidate.provenance.sourceRevision)) errors.push("unbound-provenance-source-revision");
     if (!candidate.provenance.sourceLine) errors.push("missing-provenance-source-line");
     if (!candidate.provenance.license) errors.push("missing-provenance-license");
   }
@@ -54,7 +56,10 @@ export function validateCandidate(candidate) {
 
 export function fingerprint(candidate) {
   const value = normalizeCandidate(candidate);
-  return JSON.stringify({ sourceId: value.sourceId, kind: value.kind, key: value.key, hosts: value.hosts, wrapperParameter: value.wrapperParameter });
+  const source = getSource(value.sourceId);
+  const identity = { sourceId: value.sourceId, kind: value.kind, key: value.key, hosts: value.hosts, wrapperParameter: value.wrapperParameter };
+  if (source?.provenanceRequirement === PROVENANCE_REQUIREMENT.ENTRY_LEVEL) identity.provenance = value.provenance;
+  return JSON.stringify(identity);
 }
 
 export function assessRisk(candidate) {
