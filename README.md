@@ -45,6 +45,8 @@ The extension never downloads upstream project data or runs their formats direct
 
 This separation keeps external-source diagnostics, licensing decisions and maintenance tooling out of the browser extension.
 
+External-source promotion is also gated by provenance policy. Sources with stable single-source licensing may use source-level provenance. Mixed corpora require entry-level provenance on every candidate: immutable/reviewable upstream URL, source revision, source line and the concrete license governing that entry. A source marked as requiring license review remains promotion-blocked even when its syntax is deterministic; enabling an adapter never implicitly approves relicensing.
+
 ### Adapter eligibility
 
 `review-only` describes the trust boundary; it does **not** automatically mean that an upstream source is safe to parse. `scripts/sources.mjs` therefore records a separate adapter status and rationale for every research source. Only sources marked `active` may have an automated offline adapter.
