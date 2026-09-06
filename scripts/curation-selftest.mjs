@@ -11,21 +11,45 @@ import {
   generateCandidateFixtures,
   validateCandidateFixtures,
 } from "./curation.mjs";
-import { ADAPTER_STATUS, getActiveAdapterSources, getSource, validateSources } from "./sources.mjs";
+import { ADAPTER_STATUS, getActiveAdapterSources, getSource, PROVENANCE_REQUIREMENT, validateSources } from "./sources.mjs";
 
 assert.deepEqual(validateSources(), []);
 assert.deepEqual(getActiveAdapterSources().map((source) => source.id).sort(), ["clearurls-rules", "fastforward"]);
 assert.equal(getSource("legitimate-url-shortener").adapterStatus, ADAPTER_STATUS.DEFERRED);
+assert.equal(getSource("legitimate-url-shortener").provenanceRequirement, PROVENANCE_REQUIREMENT.ENTRY_LEVEL);
+assert.equal(getSource("legitimate-url-shortener").licenseReviewRequired, true);
 assert.match(getSource("legitimate-url-shortener").adapterNotes, /provenance/i);
 assert.equal(getSource("adguard-url-tracking").adapterStatus, ADAPTER_STATUS.DEFERRED);
 assert.match(getSource("adguard-url-tracking").adapterNotes, /allowlist/i);
 
-const deferredSourceReview = buildReviewReport([
+const missingEntryProvenance = buildReviewReport([
   { sourceId: "legitimate-url-shortener", kind: "parameter", key: "campaign_id", hosts: ["news.example"] },
 ], []);
+assert.equal(missingEntryProvenance.accepted.length, 0);
+assert.deepEqual(missingEntryProvenance.rejected[0].reasons, [
+  "missing-provenance-source-url",
+  "missing-provenance-source-revision",
+  "missing-provenance-source-line",
+  "missing-provenance-license",
+]);
+
+const deferredSourceReview = buildReviewReport([{
+  sourceId: "legitimate-url-shortener",
+  kind: "parameter",
+  key: "campaign_id",
+  hosts: ["news.example"],
+  provenance: {
+    sourceUrl: "https://github.com/DandelionSprout/adfilt/blob/example/LegitimateURLShortener.txt",
+    sourceRevision: "example",
+    sourceLine: 42,
+    license: "GPL-3.0",
+  },
+}], []);
 assert.equal(deferredSourceReview.accepted[0].assessment.risk, RISK.HIGH);
 assert.equal(deferredSourceReview.accepted[0].assessment.reasons.includes("source-adapter-not-active"), true);
+assert.equal(deferredSourceReview.accepted[0].assessment.reasons.includes("source-license-review-required"), true);
 assert.equal(deferredSourceReview.accepted[0].promotionReady, false);
+assert.equal(deferredSourceReview.accepted[0].candidate.provenance.sourceLine, 42);
 
 const clear = adaptClearUrlsFixture([{ hosts: ["Example.COM", "example.com"], parameters: ["utm_source", "session_token"] }]);
 const report = curate(clear);

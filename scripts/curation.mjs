@@ -1,4 +1,4 @@
-import { ADAPTER_STATUS, getSource, SOURCE_INTEGRATION } from "./sources.mjs";
+import { ADAPTER_STATUS, getSource, PROVENANCE_REQUIREMENT, SOURCE_INTEGRATION } from "./sources.mjs";
 
 export const KIND = Object.freeze({ PARAMETER: "parameter", REDIRECT: "redirect" });
 export const RISK = Object.freeze({ LOW: "low", MEDIUM: "medium", HIGH: "high", BLOCKED: "blocked" });
@@ -11,6 +11,17 @@ const text = (value) => typeof value === "string" ? value.trim() : "";
 const sortedUnique = (values) => [...new Set(values.filter(Boolean))].sort();
 const host = (value) => text(value).toLowerCase().replace(/^\.+|\.+$/g, "");
 
+function normalizeProvenance(raw = {}) {
+  const value = raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {};
+  const line = Number(value.sourceLine);
+  return {
+    sourceUrl: text(value.sourceUrl),
+    sourceRevision: text(value.sourceRevision),
+    sourceLine: Number.isSafeInteger(line) && line > 0 ? line : null,
+    license: text(value.license),
+  };
+}
+
 export function normalizeCandidate(raw = {}) {
   const kind = text(raw.kind).toLowerCase();
   return {
@@ -20,6 +31,7 @@ export function normalizeCandidate(raw = {}) {
     hosts: sortedUnique((Array.isArray(raw.hosts) ? raw.hosts : []).map(host)),
     wrapperParameter: kind === KIND.REDIRECT ? text(raw.wrapperParameter).toLowerCase() : "",
     notes: text(raw.notes),
+    provenance: normalizeProvenance(raw.provenance),
   };
 }
 
@@ -30,6 +42,13 @@ export function validateCandidate(candidate) {
   if (!candidate.key) errors.push("missing-key");
   if (candidate.kind === KIND.PARAMETER && !PARAMETER.test(candidate.key || "")) errors.push("invalid-parameter-name");
   if (candidate.kind === KIND.REDIRECT && !candidate.wrapperParameter) errors.push("missing-wrapper-parameter");
+  const source = getSource(candidate.sourceId);
+  if (source?.provenanceRequirement === PROVENANCE_REQUIREMENT.ENTRY_LEVEL) {
+    if (!candidate.provenance.sourceUrl) errors.push("missing-provenance-source-url");
+    if (!candidate.provenance.sourceRevision) errors.push("missing-provenance-source-revision");
+    if (!candidate.provenance.sourceLine) errors.push("missing-provenance-source-line");
+    if (!candidate.provenance.license) errors.push("missing-provenance-license");
+  }
   return errors;
 }
 
@@ -45,6 +64,7 @@ export function assessRisk(candidate) {
   const reasons = [];
   if ([SOURCE_INTEGRATION.DEFERRED, SOURCE_INTEGRATION.INSPIRATION_ONLY].includes(source.integration)) reasons.push("source-not-directly-importable");
   if (source.integration === SOURCE_INTEGRATION.REVIEW_ONLY && source.adapterStatus !== ADAPTER_STATUS.ACTIVE) reasons.push("source-adapter-not-active");
+  if (source.licenseReviewRequired) reasons.push("source-license-review-required");
   if (value.kind === KIND.PARAMETER) {
     if (SENSITIVE.test(value.key)) reasons.push("sensitive-parameter-name");
     if (!value.hosts.length && !TRACKING.test(value.key)) reasons.push("global-parameter-scope");
