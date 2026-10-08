@@ -9,3 +9,5 @@
 - [Engineering documentation](engineering/)
 
 This repository does not have a dedicated root ROADMAP.md. Its existing documentation and catalog data remain unchanged; no roadmap is invented.
+
+- [Current work and handoff](engineering/CURRENT-WORK.md)
